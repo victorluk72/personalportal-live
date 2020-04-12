@@ -1,0 +1,14 @@
+Color schema pick
+ https://work.smarchal.com/twbscolor/
+
+ Icons
+ https://getbootstrap.com/docs/3.3/components/
+
+ https://fontawesome.com/v4.7.0/icons/
+
+ Bootstap tricks
+
+ Sizing
+ https://www.geeksforgeeks.org/bootstrap-sizing-an-element-with-examples/
+
+ 

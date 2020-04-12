@@ -1,0 +1,46 @@
+{% load widget_tweaks %}
+<div class="col-md-3">
+  <div class="card">
+    <div class="card-header main-color-bg">
+      Advanced search
+    </div>
+    <div class="card-body">
+      <form id="myForm" method="GET">
+        <div class="form-group">
+          <label for="inputContactType">Contact type</label>
+          {% render_field myAdvPersonalFilter.form.contactType class="form-control" %}
+        </div>
+
+        <div class="form-group">
+          <label for="searchFirstName">First name</label>
+          {% render_field myAdvPersonalFilter.form.firstName class="form-control" %}
+        </div>
+        <div class="form-group">
+          <label for="searchFirstName">Last name</label>
+          {% render_field myAdvPersonalFilter.form.lastName class="form-control" %}
+        </div>
+        <div class="form-group">
+          <label for="searchEmailPersonal">Personal email</label>
+          {% render_field myAdvPersonalFilter.form.emailPersonal class="form-control" %}
+        </div>
+        <div class="form-group">
+          <label for="searchEmailBusness">Business email</label>
+          {% render_field myAdvPersonalFilter.form.emailWork class="form-control" %}
+        </div>
+        <button type="submit" class="btn btn-custom-blue" id="personal-search">Search</button>
+    </div>
+    </form>
+    <button class="btn btn-custom-blue" href="{% url 'p_contacts' %}">Refresh</button>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+  function myReset() {
+    console.log('TO-DO')
+    document.getElementsByClassName("form-control").value = "";
+    document.getElementById("myForm").reset();
+  }
+</script>

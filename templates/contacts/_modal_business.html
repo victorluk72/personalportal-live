@@ -1,0 +1,171 @@
+<!-- Add Business Contact modal-->
+<div class="modal fade" id="addBusinessContact" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal form  header -->
+      <div class="modal-header main-color-bg">
+        <h4 class="modal-title" id="myModalBusines contact">Add Busniess contact</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <!-- Modal form  header -->
+
+      <div class="modal-body">
+        <form action="{% url 'add_b_contact' %}" method="POST">
+          {% csrf_token %}
+          <div class="form-row">
+
+            <div class="form-group col-md-6">
+              <strong><label for="inputBusnessType">Business Type</label></strong>
+              <select class="form-control" name="businessType_id" id="inputBusnessType" required>
+                {% for bt in business_types %}
+                <option value={{ bt.id }}>{{ bt.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="form-group col-md-6">
+              <strong><label for="inputCompanyName">Company name</label></strong>
+              <input type="text" name="businessName" class="form-control" id="inputCompanyName" placeholder="Company name">
+            </div>
+
+          </div>
+          <hr>
+
+          <div class="form-row">
+
+            <div class="form-group col-md-6">
+              <strong><label for="inputContactName">Contact name</label></strong>
+              <input type="text" name="contactName" class="form-control" id="inputContactName" placeholder="John Smith">
+            </div>
+
+            <div class="form-group col-md-6">
+              <strong><label for="inputPosition">Position</label></strong>
+              <input type="text" name="contactPosition" class="form-control" id="inputPosition" placeholder="Director">
+            </div>
+
+          </div>
+          <hr>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <strong><label for="inputEmail">Email</label></strong>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">@</div>
+                </div>
+                <input type="email" name="email" class="form-control" id="inputEmail" placeholder="info@company.com">
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <strong><label for="inputSkype">Skype</label></strong>
+              <input type="text" name="skype" class="form-control" id="inputSkype" placeholder="johnsmith">
+            </div>
+          </div>
+
+          <hr>
+          <div class="form-group">
+            <strong><label for="inputAddress">Address</label></strong>
+            <input type="text" name="address1" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          </div>
+          <div class="form-group">
+            <strong><label for="inputAddress2">Address 2</label></strong>
+            <input type="text" name="address2" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-2">
+              <strong><label for="selectCountry">Country</label></strong>
+              <select name="country" class="form-control" id="selectCountry">
+                {% for key, value in country_choices.items %}
+                <option value="{{ key }}">{{ value }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <strong><label for="inputCity">City</label></strong>
+              <input type="text" name="city" class="form-control" id="inputCity">
+            </div>
+            <div class="form-group col-md-4">
+              <strong><label for="selectState">Province/State</label></strong>
+              <select name="state" class="form-control" id="selectState">
+                {% for key, value in state_choices.items %}
+                <option value="{{ key }}">{{ value }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="form-group col-md-2">
+              <strong><label for="inputZip">Postal code</label></strong>
+              <input type="text" name="postalCode" class="form-control" id="inputZip">
+            </div>
+          </div>
+          <hr>
+          <div class="form-row">
+            <div class="form-group col-md-5">
+              <strong><label for="inputOfficePhone">Office phone</label></strong>
+              <input type="text" name="officePhone" class="form-control format-phone" id="inputOfficePhone">
+            </div>
+
+            <div class="form-group col-md-2">
+              <strong><label for="inputOfficePhoneExt">Ext</label></strong>
+              <input type="text" name="officePhoneExt" class="form-control" id="inputOfficePhoneExt">
+            </div>
+
+            <div class="form-group col-md-5">
+              <strong><label for="inputBusinessMobilePhone">Mobile phone</label></strong>
+              <input type="text" name="mobilePhone" class="form-control format-phone" id="inputBusinessMobilePhone">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-5">
+              <strong><label for="inputTollPhone">Toll phone</label></strong>
+              <input type="text" name="tollPhone" class="form-control format-phone" id="inputTollPhone">
+            </div>
+
+            <div class="form-group col-md-2">
+              <strong><label for="inputTollPhoneExt">Ext</label></strong>
+              <input type="text" name="tollPhoneExt" class="form-control" id="inputTollPhoneExt">
+            </div>
+
+            <div class="form-group col-md-5">
+              <strong><label for="inputFax">Fax</label></strong>
+              <input type="text" name="fax" class="form-control format-phone" id="inputFax">
+            </div>
+          </div>
+
+          <hr>
+          <!-- Website section begins-->
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <strong><label for="inputSite">Website</label></strong>
+              <input type="text" name="website" class="form-control" id="inputSite" placeholder="www.company.com">
+            </div>
+            <div class="form-group col-md-6">
+              <strong><label for="inputFacebook">Facebook</label></strong>
+              <input type="text" name="facebook" class="form-control" id="inputFacebook" placeholder="www.facebook.com/Company">
+            </div>
+          </div>
+          <hr>
+          <!-- Website section endss-->
+
+          <!-- Note section begins-->
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <strong><label for="inputNote">Notes</label></strong>
+              <input type="text" name="note" class="form-control" id="inputNote">
+            </div>
+          </div>
+          <!-- Note section ends-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-custom-blue">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Business contact modal ends -->

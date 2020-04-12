@@ -1,0 +1,42 @@
+<!-- Side bar begins -take 2 columns out of 12 -->
+<div class="col-md-2">
+  <div class="list-group">
+    <a href="{% url 'index' %}" {% if '/' == request.path %} class="list-group-item list-group-item-action active main-color-bg"
+      {% else %} class="list-group-item list-group-item-action" {% endif %}>
+      <i class="fa fa-home" aria-hidden="true"></i> Dashboard</a>
+
+    <a href="{% url 'p_contacts' %}" {% if 'contacts' in request.path %} class="list-group-item list-group-item-action active main-color-bg"
+      {% else %} class="list-group-item list-group-item-action" {% endif %}>
+      <i class="fa fa-id-card-o" aria-hidden="true"> </i> Contacts</a>
+
+
+    <a href="{% url 'calendar' %}" {% if 'calendar' in request.path %} class="list-group-item list-group-item-action active main-color-bg"
+      {% else %} class="list-group-item list-group-item-action" {% endif %}>
+      <i class="fa fa-calendar" aria-hidden="true"> </i> Calendar</a>
+
+    <a href="{% url 'notes' %}" {% if 'notes' in request.path %} class="list-group-item list-group-item-action active main-color-bg"
+      {% else %} class="list-group-item list-group-item-action" {% endif %}>
+      <i class="fa fa-sticky-note-o" aria-hidden="true"> </i> Notes</a>
+
+    <a href="{% url 'photos' %}" {% if 'photos' in request.path %} class="list-group-item list-group-item-action active main-color-bg"
+      {% else %} class="list-group-item list-group-item-action" {% endif %}>
+      <i class="fa fa-camera-retro" aria-hidden="true"> </i> Photos</a>
+
+    <a href="{% url 'weather' %}" {% if 'weather' in request.path %} class="list-group-item list-group-item-action active main-color-bg"
+      {% else %} class="list-group-item list-group-item-action" {% endif %}>
+      <i class="fa fa-umbrella" aria-hidden="true"> </i> Weather</a>
+
+    <a href="{% url 'stocks' %}" {% if 'stocks' in request.path %} class="list-group-item list-group-item-action active main-color-bg"
+      {% else %} class="list-group-item list-group-item-action" {% endif %}>
+      <i class="fa fa-bar-chart" aria-hidden="true"> </i> Stocks</a>
+
+    <a href="{% url 'news' %}" {% if 'news' in request.path %} class="list-group-item list-group-item-action active main-color-bg"
+      {% else %} class="list-group-item list-group-item-action" {% endif %}>
+      <i class="fa fa-newspaper-o" aria-hidden="true"> </i> News</a>
+
+    <a href="{% url 'shopping' %}" {% if 'shopping' in request.path %} class="list-group-item list-group-item-action active main-color-bg"
+      {% else %} class="list-group-item list-group-item-action" {% endif %}>
+      <i class="fa fa-shopping-cart" aria-hidden="true"> </i> Shopping</a>
+  </div>
+</div>
+<!-- Side bar ends -->

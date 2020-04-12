@@ -1,0 +1,327 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}| Contacts{% endblock %}
+
+{% block content %}
+<section id="main">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Side bar begins-->
+      {% include 'sidebar.html'%}
+      <!-- Side bar ends  -->
+      <div class="col-md-10">
+        <div class="row">
+          <div class="card">
+            <div class="card-header main-color-bg">
+              <div class="row">
+                <div class="col-md-10">
+                  Personal contact
+                </div>
+                <form action="" method="POST">
+                  {% csrf_token %}
+                  <div>
+                    <a class="btn btn btn-outline-light" href="{% url 'p_contacts' %}">Close</a>
+                    <button type="submit" class="btn btn-outline-light">Save</button>
+                    <!-- <a class="btn btn btn-outline-light" href="#">Print</a> -->
+                  </div>
+
+              </div>
+            </div>
+            <!--End of Card header div -->
+
+            <div class="card-body">
+              <div class="form-row">
+                <!--Begin row #1 of the form-->
+                <div class="form-group col-md-3">
+                  <strong><label for="inputBusnessType">Contact type</label></strong>
+                  <div class="input-group mb-3">
+                    {% render_field form_p.contactType class="form-control" %}
+                  </div>
+                </div>
+
+                <div class="form-group col-md-3">
+                  <strong><label for="inputFirstName">First name</label></strong>
+                  {% render_field form_p.firstName class="form-control" %}
+                </div>
+
+                <div class="form-group col-md-3">
+                  <strong><label for="inputLastName">Last Name</label></strong>
+                  {% render_field form_p.lastName class="form-control" %}
+                </div>
+
+                <div class="form-group col-md-3">
+                  <strong><label for="inputBirthday">Birthday (yyyy-mm-dd)</label></strong>
+                  {% render_field form_p.birthday class="form-control date-picker" placeholder="yyyy-mm-dd" %}
+                </div>
+              </div>
+              <!--End of row #1 of the form-->
+              <hr>
+
+              <!--Begin row #2 of the form-->
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <strong><label for="inputPesronalEmail">Personal email</label></strong>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">@</div>
+                    </div>
+                    {% render_field form_p.emailPersonal class="form-control" %}
+                  </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                  <strong><label for="inputWorkEmail">Work email</label></strong>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">@</div>
+                    </div>
+                    {% render_field form_p.emailWork class="form-control" %}
+                  </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                  <strong><label for="inputSkype">Skype</label></strong>
+                  {% render_field form_p.skype class="form-control" %}
+                </div>
+              </div>
+              <!--End of row #2 of the form-->
+
+              <!--Begin row #3 of the form-->
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <strong><label for="inputCompany">Company name</label></strong>
+                  {% render_field form_p.company class="form-control" %}
+                </div>
+
+                <div class="form-group col-md-4">
+                  <strong><label for="inputSite">Website</label></strong>
+                  {% render_field form_p.website class="form-control" %}
+                </div>
+
+                <div class="form-group col-md-4">
+                  <strong><label for="inputFacebook">Facebook</label></strong>
+                  {% render_field form_p.facebook class="form-control" %}
+                </div>
+              </div>
+              <!--End of row #3 of the form-->
+              <hr>
+
+              <!--Begin row #4 (Address) of the form-->
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <strong><label for="inputAddress">Address</label></strong>
+                  {% render_field form_p.address1 class="form-control" %}
+                </div>
+                <div class="form-group col-md-6">
+                  <strong><label for="inputAddress2">Address 2</label></strong>
+                  {% render_field form_p.address2 class="form-control" %}
+                </div>
+              </div>
+              <!--End of row #4 (Address) of the form-->
+
+              <!--Begin row #5 (more Address ) of the form-->
+              <div class="form-row">
+                <div class="form-group col-md-2">
+                  <strong><label for="selectCountry">Country</label></strong>
+                  {% render_field form_p.country class="form-control" id="selectCountry" %}
+                </div>
+
+                <div class="form-group col-md-4">
+                  <strong><label for="inputCity">City</label></strong>
+                  {% render_field form_p.city class="form-control" %}
+                </div>
+                <div class="form-group col-md-4">
+                  <strong><label for="selectState">Province/State</label></strong>
+                  {% render_field form_p.state class="form-control" %}
+                </div>
+
+                <div class="form-group col-md-2">
+                  <strong><label for="inputZip">Postal code</label></strong>
+                  {% render_field form_p.postalCode class="form-control" %}
+                </div>
+              </div>
+              <!--End of  row #5 (more Address ) of the form-->
+              <hr>
+
+              <!--Begin row #6 (Phones ) of the form-->
+              <div class="form-row">
+                <div class="form-group col-md-1">
+                  <strong><label for="countryCode">Code</label></strong>
+                  {% render_field form_p.country_code|attr:"readonly" id="countryCode" class="form-control" %}
+                </div>
+
+                <div class="form-group col-md-3">
+                  <strong><label for="inputHomePhone">Home phone</label></strong>
+                  {% render_field form_p.homePhone class="form-control format-phone" %}
+                </div>
+
+                <div class="form-group col-md-3">
+                  <strong><label for="inputMobilePhone">Mobile phone</label></strong>
+                  {% render_field form_p.mobilePhone class="form-control format-phone" %}
+                </div>
+
+                <div class="form-group col-md-3">
+                  <strong><label for="inputOfficePhone">Work phone</label></strong>
+                  {% render_field form_p.workPhone class="form-control format-phone" %}
+                </div>
+
+                <div class="form-group col-md-2">
+                  <strong><label for="inputOfficePhoneExt">Ext</label></strong>
+                  {% render_field form_p.workPhoneExt class="form-control" %}
+                </div>
+                <hr>
+              </div>
+              <!--End of  row #6 (Phones ) of the form-->
+              <!-- Note section begins-->
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <strong><label for="inputNote">Notes</label></strong>
+                  {% render_field form_p.note class="form-control" %}
+                </div>
+              </div>
+              <!-- Note section ends-->
+              <hr>
+
+              <!-- Collapsable buttons starts-->
+              <button type="button" class="btn btn-custom-collapse" aria-expanded="false" data-toggle="collapse"
+                data-target="#spouse">Spouse info
+                <i class="fa fa-chevron-up pull-right"></i>
+                <i class="fa fa-chevron-down pull-right"></i>
+              </button>
+
+              <button type="button" class="btn btn-custom-collapse" aria-expanded="false" data-toggle="collapse"
+                data-target="#children">Children info
+                <i class="fa fa-chevron-up pull-right"></i>
+                <i class="fa fa-chevron-down pull-right"></i>
+              </button>
+              <!-- Collapsable buttons ends-->
+
+              <!--Begin row #8 (Spouse info ) of the form-->
+              <!-- Spouse Collapsable part starts-->
+              <div id="spouse" class="collapse">
+                <hr>
+                <div class="form-row">
+
+                  <div class="form-group col-md-3">
+                    <strong><label for="inputSpBirthday">Spouse Birthday (yyyy-mm-dd)</label></strong>
+                    {% render_field form_p.spouseBirthday class="form-control date-picker" placeholder="yyyy-mm-dd" %}
+                  </div>
+                  <div class="form-group col-md-3">
+                    <strong><label for="inputSpFirstName">Spouse first name</label></strong>
+                    {% render_field form_p.spouseFirstName class="form-control" %}
+                  </div>
+
+                  <div class="form-group col-md-3">
+                    <strong><label for="inputSpLastName">Spouse middle Name</label></strong>
+                    {% render_field form_p.spouseMiddleName class="form-control" %}
+                  </div>
+
+                  <div class="form-group col-md-3">
+                    <strong><label for="inputSpLastName">Spouse last Name</label></strong>
+                    {% render_field form_p.spouseLastName class="form-control" %}
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-1">
+                    <strong><label for="countryCode">Code</label></strong>
+                    {% render_field form_p.country_code|attr:"readonly" id="countryCode_s" class="form-control" %}
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <strong><label for="inputHomePhone">Spouse mobile phone</label></strong>
+                    {% render_field form_p.spouseMobilePhone class="form-control format-phone" %}
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <strong><label for="inputMobilePhone">Spouse work phone</label></strong>
+                    {% render_field form_p.spouseWorkPhone class="form-control format-phone" %}
+                  </div>
+
+                  <div class="form-group col-md-3">
+                    <strong><label for="inputOfficePhoneExt">Ext</label></strong>
+                    {% render_field form_p.spouseworkPhoneExt class="form-control" %}
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <strong><label for="inputPesronalEmail">Spouse personal email</label></strong>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">@</div>
+                      </div>
+                      {% render_field form_p.spouseEmailPersonal class="form-control" %}
+                    </div>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <strong><label for="inputWorkEmail">Spouse work email</label></strong>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">@</div>
+                      </div>
+                      {% render_field form_p.spouseEmailBusiness class="form-control" %}
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!--End of spouse info -->
+
+              <!-- Children Collapsable part starts-->
+              <div id="children" class="collapse">
+                <hr>
+                <!-- <form action="" method="POST">
+                {% csrf_token %} -->
+                <table class="table table-hover table-striped table-bordered">
+                  {{ form_c.as_table }}
+                </table>
+
+                <!-- <table class="table table-hover table-striped table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Child first name</th>
+                      <th scope="col">Child middle Name</th>
+                      <th scope="col">Birthday (yyyy-mm-dd)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{ form_c.management_form }}
+                    {% for form in form_c %}
+                    <tr>
+                      <td>{% render_field form.firstName class="form-control" %}</td>
+                      <td>{% render_field form.lastName class="form-control" %}</td>
+                      <td>{% render_field form.birthday class="form-control date-picker" placeholder="yyyy-mm-dd" %}</td>
+                    <tr>
+                      {% endfor %}
+                  </tbody>
+                </table> -->
+
+              </div>
+              <!-- Children Collapsable part ends-->
+              <!-- <button type="submit" class="btn btn-custom-blue">Save</button> -->
+              <!-- </form> -->
+
+              <div class="form-group text-right">
+                <a class="btn btn-default" href="{% url 'p_contacts' %}">Close</a>
+                <button type="submit" class="btn btn-custom-blue">Save</button>
+              </div>
+
+              </form>
+            </div>
+
+            <!--div forcard body-->
+          </div> <!-- card-->
+        </div><!-- row-->
+      </div> <!-- div col-md-10 -->
+    </div> <!-- div for row -->
+  </div> <!-- div for container fluid -->
+</section> <!-- end for section="main"-->
+
+<!-- Modal  begins -->
+{% include 'contacts/_modal_new_b_type.html'%}
+<!-- Modal Personal/Business contact ends -->
+{% endblock %}

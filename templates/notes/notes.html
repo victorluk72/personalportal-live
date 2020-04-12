@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}| Notes{% endblock %}
+
+{% block content %}
+   
+<!-- Main area begins -->
+<section id="main">
+        <div class="container-fluid">
+          <div class="row">
+
+             <!-- Side bar begins-take 2 columns out of 12 -->
+              {% include 'sidebar.html'%}
+             <!-- Side bar ends -->
+             
+             <p>Notes goes here</p>
+          </div>
+      </div>
+</section>
+<!-- Main area ends -->   
+
+{% endblock %}

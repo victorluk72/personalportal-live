@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}| Welcome{% endblock %}
+
+{% block content %}
+
+<!-- Main area begins -->
+<section id="main">
+  <div class="container-fluid">
+    <div class="row">
+
+      <!-- Side bar begins-take 2 columns out of 12 -->
+      {% include 'sidebar.html'%}
+      <!-- Side bar ends -->
+
+      <!-- Main area begins take 9 columns out of 12 -->
+      <div class="col-md-10">
+        {% if user.is_authenticated %}
+
+        <div class="card">
+          <div class="card-header main-color-bg">
+            Pick your app {{user.first_name}}
+          </div>
+          <div class="card-body">
+
+            <!-- First row starts-->
+            <div class="row">
+              <div class="col-sm-3">
+
+                <div class="card">
+                  <a href="{% url 'p_contacts' %}">
+                    <div class="card-body text-dark">
+                      <h5 class="card-title"><i class="fa fa-id-card-o fa-2x" aria-hidden="true"> </i></h5>
+                      <h5 class="card-text">Contacts</h5>
+                      <!--<a href="#" class="btn btn-primary">Contacts >></a> -->
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="card">
+                  <a href="{% url 'calendar' %}">
+                    <div class="card-body text-dark">
+                      <h5 class="card-title"><i class="fa fa-calendar fa-2x" aria-hidden="true"> </i></h5>
+                      <h5 class="card-text">Calentar</h5>
+                      <!--<a href="#" class="btn btn-primary">Contacts >></a> -->
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="card">
+                  <a href="{% url 'notes' %}">
+                    <div class="card-body text-dark">
+                      <h5 class="card-title"><i class="fa fa-sticky-note-o fa-2x" aria-hidden="true"> </i></h5>
+                      <h5 class="card-text">Notes</h5>
+                      <!--<a href="#" class="btn btn-primary">Contacts >></a> -->
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="card">
+                  <a href="{% url 'photos' %}">
+                    <div class="card-body text-dark">
+                      <h5 class="card-title"><i class="fa fa-camera-retro fa-2x" aria-hidden="true"> </i></h5>
+                      <h5 class="card-text">Photos</h5>
+                      <!--<a href="#" class="btn btn-primary">Contacts >></a> -->
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- First row ends-->
+
+            <!-- Secont row starts-->
+            <div class="row mt-3">
+              <div class="col-sm-3">
+                <div class="card">
+                  <a href="{% url 'weather' %}">
+                    <div class="card-body text-dark">
+                      <h5 class="card-title"><i class="fa fa-umbrella fa-2x" aria-hidden="true"> </i></h5>
+                      <h5 class="card-text">Weather</h5>
+                      <!--<a href="#" class="btn btn-primary">Contacts >></a> -->
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="card">
+                  <a href="{% url 'stocks' %}">
+                    <div class="card-body text-dark">
+                      <h5 class="card-title"><i class="fa fa-bar-chart fa-2x" aria-hidden="true"> </i></h5>
+                      <h5 class="card-text">Stocks</h5>
+                      <!--<a href="#" class="btn btn-primary">Contacts >></a> -->
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="card">
+                  <a href="{% url 'news' %}">
+                    <div class="card-body text-dark">
+                      <h5 class="card-title"><i class="fa fa-newspaper-o fa-2x" aria-hidden="true"> </i></h5>
+                      <h5 class="card-text">News</h5>
+                      <!--<a href="#" class="btn btn-primary">Contacts >></a> -->
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="card">
+                  <a href="{% url 'shopping' %}">
+                    <div class="card-body text-dark">
+                      <h5 class="card-title"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"> </i></h5>
+                      <h5 class="card-text">Shopping</h5>
+                      <!--<a href="#" class="btn btn-primary">Contacts >></a> -->
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- Second row ends-->
+          </div>
+        </div>
+
+        <!-- Collapsable starts-->
+        <div class="accordion mt-3" id="accordionExample">
+          <div class="card">
+            <div class="card-header bg-transparent" id="headingOne">
+              <!--  btn-outline-primary-->
+              <button class="btn btn-custom-blue btn-block" type="button" data-toggle="collapse" data-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                Current events <i class="fa fa-arrow-circle-o-down ml-3" aria-hidden="true"></i>
+              </button>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Date</th>
+                      <th>Event name</th>
+                      <th>Exact date</th>
+                      <th>Details</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Today</td>
+                      <td>Steve birthday</td>
+                      <td>Sep-12-2020</td>
+                      <td>Details</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Tomorrow</td>
+                      <td>Family day</td>
+                      <td>Feb-26-2020</td>
+                      <td>Details</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Next week</td>
+                      <td>D day</td>
+                      <td>Nov-11-2020</td>
+                      <td>Details</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>Next month</td>
+                      <td>Viktor Lukyanenko birthday</td>
+                      <td>Nov-13-2020</td>
+                      <td>Details</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Collapsable ends-->
+        {% else %}
+        You are not authorized to see the content of this page
+        {% endif %}
+      </div>
+
+    </div>
+    <!-- Main area ends -->
+
+  </div>
+  </div>
+</section>
+</main>
+
+
+
+{% endblock %}

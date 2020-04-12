@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}| Contacts{% endblock %}
+
+{% block content %}
+<section id="main">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Side bar begins-->
+            {% include 'sidebar.html'%}
+            <!-- Side bar ends  -->
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="card">
+                        <div class="card-header main-color-bg">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    Business contact
+                                </div>
+                                <form action="" method="POST">
+                                    {% csrf_token %}
+                                    <div>
+                                        <a class="btn btn btn-outline-light" href="{% url 'b_contacts' %}">Close</a>
+                                        <button type="submit" class="btn btn-outline-light">Save</button>
+                                    </div>
+                            </div>
+                        </div>
+                        <!--End of Card header div -->
+
+                        <div class="card-body">
+                            <!-- <form action="" method="POST" id="submitForm">
+                            {% csrf_token %} -->
+                            <!--Begin row #1 of the form-->
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <strong><label for="inputBusnessType">Busness Type</label></strong>
+                                    <div class="input-group mb-3">
+                                         {% if 'add_b_contact' in request.path %}
+                                            <div class="input-group-append">
+                                                <button class="btn btn btn-custom-blue" data-toggle="modal" data-target="#newTypeModal">+</button>
+                                            </div>
+                                         {% endif %}
+                                        {% render_field form_b.businessType class="form-control" %}
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <strong><label for="inputCompanyName">Busness Name</label></strong>
+                                    {% render_field form_b.businessName class="form-control" %}
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <strong><label for="inputContactName">Contact Name</label></strong>
+                                    {% render_field form_b.contactName class="form-control" %}
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <strong><label for="inputPosition">Contact Position</label></strong>
+                                    {% render_field form_b.contactPosition class="form-control" %}
+                                </div>
+                            </div>
+                            <!--End of row #1 of the form-->
+                            <hr>
+
+                            <!--Begin row #2 of the form-->
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <strong><label for="inputEmail">Eamil</label></strong>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">@</div>
+                                        </div>
+                                        {% render_field form_b.email class="form-control" %}
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <strong><label for="inputSkype">Skype</label></strong>
+                                    {% render_field form_b.skype class="form-control" %}
+                                </div>
+                            </div>
+                            <!--End of row #2 of the form-->
+
+
+                            <!--Begin row #3 of the form-->
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <strong><label for="inputSite">Website</label></strong>
+                                    {% render_field form_b.website class="form-control http-prefix" %}
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <strong><label for="inputFacebook">Facebook</label></strong>
+                                    {% render_field form_b.facebook class="form-control http-prefix" %}
+                                </div>
+                            </div>
+                            <!--End of row #3 of the form-->
+                            <hr>
+
+                            <!--Begin row #4 (Address) of the form-->
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <strong><label for="inputAddress">Address</label></strong>
+                                    {% render_field form_b.address1 class="form-control" %}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <strong><label for="inputAddress2">Address2</label></strong>
+                                    {% render_field form_b.address2 class="form-control" %}
+                                </div>
+                            </div>
+                            <!--End of row #4 (Address) of the form-->
+
+                            <!--Begin row #5 (more Address ) of the form-->
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <strong><label for="selectCountry">Country</label></strong>
+                                    {% render_field form_b.country class="form-control" id="selectCountry" %}
+
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <strong><label for="inputCity">City</label></strong>
+                                    {% render_field form_b.city class="form-control" %}
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <strong><label for="selectState">State/Province</label></strong>
+                                    {% render_field form_b.state class="form-control" %}
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <strong><label for="inputZip">Postal code</label></strong>
+                                    {% render_field form_b.postalCode class="form-control" %}
+                                </div>
+                            </div>
+                            <!--End of  row #5 (more Address ) of the form-->
+                            <hr>
+
+                            <!--Begin row #6 (Phones ) of the form-->
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <strong><label for="countryCode">Code</label></strong>
+                                    {% render_field form_b.country_code|attr:"readonly" id="countryCode" class="form-control" %}
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <strong><label for="inputOfficePhone">Office phone</label></strong>
+                                    {% render_field form_b.officePhone class="form-control format-phone" %}
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <strong><label for="inputOfficePhoneExt">Ext</label></strong>
+                                    {% render_field form_b.officePhoneExt class="form-control" %}
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <strong><label for="inputBusinessMobilePhone">Mobile phone</label></strong>
+                                    {% render_field form_b.mobilePhone class="form-control format-phone" %}
+                                </div>
+                            </div>
+                            <!--End of  row #6 (Phones ) of the form-->
+
+                            <!--Begin row #7 (more Phones ) of the form-->
+                            <div class="form-row">
+                                <div class="form-group col-md-5">
+                                    <strong><label for="inputTollPhone">Toll phone</label></strong>
+                                    {% render_field form_b.tollPhone class="form-control format-phone" %}
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <strong><label for="inputTollPhoneExt">Ext</label></strong>
+                                    {% render_field form_b.tollPhoneExt class="form-control" %}
+                                </div>
+
+                                <div class="form-group col-md-5">
+                                    <strong><label for="inputFax">Fax</label></strong>
+                                    {% render_field form_b.fax class="form-control format-phone" %}
+                                </div>
+                            </div>
+                            <!--End of row #7 (more Phones )-->
+                            <hr>
+                            <!-- Note section begins-->
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <strong><label for="inputNote">Notes</label></strong>
+                                    {% render_field form_b.note class="form-control" %}
+                                </div>
+                            </div>
+                            <!-- Note section ends-->
+                            <hr>
+                            <div class="form-group text-right">
+                                <a class="btn btn-default" href="{% url 'b_contacts' %}">Close</a>
+                                <button type="submit" class="btn btn-custom-blue">Save</button>
+                            </div>
+
+                            </form>
+                        </div>
+                        <!--div forcard body-->
+                    </div> <!-- card-->
+                </div> <!-- div col-md-10 -->
+            </div> <!-- div for row -->
+        </div>
+    </div> <!-- div for container fluid -->
+</section> <!-- end for section="main"-->
+
+<!-- Modal  begins -->
+{% include 'contacts/_modal_new_b_type.html'%}
+<!-- Modal Personal/Business contact ends -->
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}| Delete{% endblock %}
+
+{% block content %}
+<div class="row justify-content-md-center">
+    <div class="col-md-3">
+        <div class="card card-body">
+            <p>Are you sure you want to delete {{b_contact.businessName}}?</p>
+            <form action="{% url 'delete_b_contact' b_contact.id %}" method="POST">
+                {% csrf_token %}
+
+                <a class="btn btn-warning" href="{% url 'b_contacts' %}">Cancel</a>
+                <input class="btn btn-danger" type="submit" name="Confirm">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}| Contacts{% endblock %}
+
+{% block content %}
+
+<!-- Main area begins -->
+<section id="main">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Side bar begins-->
+      {% include 'sidebar.html'%}
+      <!-- Side bar ends  -->
+
+      <!-- Main area begins take 10 columns out of 12 -->
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-9">
+
+            <!-- Tab nav bar here-->
+            <div class="mb-2">
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Personal contacts</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'b_contacts' %}">Business contacts</a>
+                </li>
+              </ul>
+            </div>
+            <!-- Tab nav bar ends-->
+
+            <!-- Personal contacts here-->
+            <!-- Search bar starts here-->
+            <div class="form-row">
+              <div class="col">
+                <form method="GET">
+                  <div class="form-group mb-2">
+                    {% render_field myPersonalFilter.form.lastName class="form-control" placeholder="Search" %}
+                  </div>
+              </div>
+
+              <div class="col-auto">
+                <button type="submit" class="btn btn-custom-blue mb-2"><i class="fa fa-search" aria-hidden="true"></i></button>
+              </div>
+              <!-- Search bar ends here-->
+              </form>
+              <div class="col-right">
+                <!-- <button type="submit" data-toggle="modal" data-target="#addPersonalContact" class="btn btn-custom-blue mb-2"><i class="fa fa-address-book-o" aria-hidden="true"></i> Add Contact</button> -->
+                <a class="btn btn-custom-blue" href="{% url 'add_p_contact' %}">Add Contact</a>
+              </div>
+            </div>
+
+            <!--Table with personal contacts-->
+            {% if personal_contacts %}
+            <table class="table table-hover table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">First name</th>
+                  <th scope="col">Last Name</th>
+                  <th scope="col">City</th>
+                  <th scope="col">Home phone</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for personal_contact in personal_contacts %}
+                <tr>
+                  <td>{{ personal_contact.firstName }}</td>
+                  <td>{{ personal_contact.lastName }}</td>
+                  <td>{{ personal_contact.city }}</td>
+                  <td>{{ personal_contact.homePhone }}</td>
+                  <td>{{ personal_contact.emailPersonal }}</td>
+                  <td>
+                    <div class="btn-group">
+                      <a class="btn btm-sm btn-success" href="{% url 'update_p_contact' personal_contact.id %}"><i
+                          class="fa fa-edit fa-xs"></i></a>
+                      <a class="btn btm-sm btn-danger" href="{% url 'delete_p_contact' personal_contact.id %}"><i class="fa fa-trash fa-xs"></i></a>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% else %}
+            <p>There is no personal contact yet...</p>
+            {% endif %}
+            <!--Table with personal contacts ends-->
+
+            <!--Pagination area begins-->
+            {% include 'contacts/_pagination_p.html' %}
+            <!--Pagination area ends-->
+
+          </div>
+          <!--Advanced search form area begins-->
+          {% include 'contacts/_advanced_search_p.html'%}
+          <!--Advanced search form area ends-->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Main area ends -->
+
+<!-- Modal Personal/Business contact begins -->
+{% include 'contacts/_modal_personal.html'%}
+{% include 'contacts/_modal_business.html'%}
+<!-- Modal Personal/Business contact ends -->
+
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}| Contacts{% endblock %}
+
+{% block content %}
+
+<!-- Main area begins -->
+<section id="main">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Side bar begins-->
+      {% include 'sidebar.html'%}
+      <!-- Side bar ends  -->
+
+      <!-- Main area begins take 10 columns out of 12 -->
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-9">
+
+    <!-- Tab nav bar here-->
+    <div class="mb-2">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Business contacts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'p_contacts' %}">Personal contacts</a>
+            </li>
+          </ul>
+        </div> 
+     <!-- Tab nav bar ends-->
+   
+         <!-- Personal contacts here-->
+            <!-- Search bar starts here-->
+            <div class="form-row">
+              <div class="col">
+                <form method="GET">
+                  <div class="form-group mb-2">
+                      {% render_field myBusinessFilter.form.businessName class="form-control" placeholder="Search business name" %} 
+                  </div>
+              </div>
+
+              <div class="col-auto">
+                <button type="submit" class="btn btn-custom-blue mb-2"><i class="fa fa-search" aria-hidden="true"></i></button>
+              </div>   
+            </form>
+            <!-- Search bar ends here--> 
+               <div class="col-right">
+                <a class="btn btn-custom-blue" href="{% url 'add_b_contact' %}">Add Contact</a>
+              </div>
+          </div>
+
+            <!--Table with business contacts-->
+            {% if business_contacts %}
+            <table class="table table-hover table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Business name</th>
+                  <th scope="col">Business type</th>
+                  <th scope="col">Contact name</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for business_contact in business_contacts %}
+                <tr>
+                  <td>{{ business_contact.businessName }} </td>
+                  <td>{{ business_contact.businessType }}</td>
+                  <td>{{ business_contact.contactName }}</td>
+                  <td>{{ business_contact.officePhone }} </td>
+                  <td>{{ business_contact.email }}</td>
+
+                  <td>
+                    <div class="btn-group">
+                      <a class="btn btm-sm btn-success" href="{% url 'update_b_contact' business_contact.id %}"><i
+                          class="fa fa-edit fa-xs"></i></a>
+                      <a class="btn btm-sm btn-danger" href="{% url 'delete_b_contact' business_contact.id %}"><i class="fa fa-trash fa-xs"></i></a>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% else %}
+            <p>There is no business contact yet...</p>
+            {% endif %}
+            <!--Table with business contacts ends-->
+
+            <!--Pagination area begins-->
+            {% include 'contacts/_pagination_b.html' %}
+            <!--Pagination area ends-->
+          </div>
+          <!--Advanced search form area begins-->
+          {% include 'contacts/_advanced_search_b.html' %}
+          <!--Advanced search form area ends-->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Main area ends -->
+
+<!-- Modal Personal/Business contact begins -->
+{% include 'contacts/_modal_personal.html'%}
+{% include 'contacts/_modal_business.html'%}
+<!-- Modal Personal/Business contact ends -->
+
+{% endblock %}

@@ -1,0 +1,340 @@
+<!-- Add Personal Contact -->
+<div class="modal fade" id="addPersonalContact" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal form  header -->
+      <div class="modal-header main-color-bg">
+        <h4 class="modal-title" id="myModalPersonal">Add Personal contact</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <!-- Modal form  header -->
+
+      <div class="modal-body">
+          <form action="{% url 'add_p_contact' %}" method = "POST">
+              {% csrf_token %}
+
+          <!-- Name block beginss-->  
+          <div class="form-row">
+
+              <div class="form-group col-md-3"> 
+                  <strong><label for="selectContactType">Contact type</label></strong>   
+                  <select class="form-control" name= "contactType" id="selectContactType">
+                    {% for key, value in p_contact_choices.items %}
+                     <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %} 
+                  </select>
+              </div>
+  
+              <div class="form-group col-md-3">
+                  <strong><label for="inputFirstName">First name</label></strong>
+                  <input type="text" class="form-control" name = "firstName" id="inputFirstName" placeholder="First name" required>
+              </div>
+                  
+              <div class="form-group col-md-3">
+                  <strong><label for="inputLastName">Last Name</label></strong>
+                  <input type="text" class="form-control" name = "lastName" id="inputLastName" placeholder="Last name">
+              </div>
+                  
+              <div class="form-group col-md-3">
+                  <strong><label for="inputBirthday">Birthday</label></strong>
+                  <input type="date" class="form-control" id="inputBirthday" placeholder="25/12">
+              </div>
+
+          </div>
+          <!-- Name block ends-->
+          <hr>
+          <!-- Email block beging-->
+          <div class="form-row">
+                              <div class="form-group col-md-6">
+                                  <strong><label for="inputPesronalEmail">Personal email</label></strong>
+                                  <div class="input-group"> 
+                                  <div class="input-group-prepend">
+                                      <div class="input-group-text">@</div>
+                                  </div>
+                                  <input type="email" class="form-control" id="inputPesronalEmail" placeholder="Personal email">
+                                  </div>
+                              </div>
+                  
+                              <div class="form-group col-md-6">
+                                  <strong><label for="inputWorkEmail">Work email</label></strong>
+                                  <div class="input-group"> 
+                                      <div class="input-group-prepend">
+                                      <div class="input-group-text">@</div>
+                                      </div>
+                                      <input type="email" class="form-control" id="inputWorkEmail" placeholder="Work email">
+                                  </div>
+                              </div>
+          </div>
+          <!-- Email block ends-->
+       
+          <!-- Web block beging-->
+          <div class="form-row">
+                          <div class="form-group col-md-6">
+                          <strong><label for="inputPersonalWebSite">Web site</label></strong>
+                              <div class="input-group"> 
+                              <div class="input-group-prepend">
+                                  <div class="input-group-text">W</div>
+                              </div>
+                              <input type="text" class="form-control" id="inputPersonalWebSite" placeholder="www.johnsmith.com">
+                              </div>
+                          </div>
+                          <div class="form-group col-md-6">
+                          <strong><label for="inputPersonalFacebook">Facebook</label></strong>
+                              <div class="input-group"> 
+                              <div class="input-group-prepend">
+                                  <div class="input-group-text">F</div>
+                              </div>
+                              <input type="text" class="form-control" id="inputPersonalFacebook" placeholder="https://www.facebook.com/johnsmith">
+                          </div>
+                      </div>
+          </div>
+          <!-- Web block ends-->
+
+          <hr>
+          
+          <!-- Address block beging-->
+          <div class="form-group">
+              <strong><label for="inputAddress">Address</label></strong>
+              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          </div>
+          <div class="form-group">
+              <strong><label for="inputAddress2">Address 2</label></strong>
+              <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+          </div>
+          <!-- Address block beging-->
+
+          <!-- Contry section begins-->  
+                          <div class="form-row">
+                            <div class="form-group col-md-2">
+                              <strong><label for="selectCountry">Country</label></strong>
+                              <select class="form-control" id="selectCountry">
+                                {% for key, value in country_choices.items %}
+                                  <option value="{{ key }}">{{ value }}</option>
+                                {% endfor %}
+                              </select> 
+                            </div>
+                            <div class="form-group col-md-4">
+                              <strong><label for="inputCity">City</label></strong>
+                              <input type="text" class="form-control" id="inputCity">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <strong><label for="selectState">Province/State</label></strong>
+                              <select class="form-control" id="selectState">
+                                  {% for key, value in state_choices.items %}
+                                    <option value="{{ key }}">{{ value }}</option>
+                                  {% endfor %}
+                                </select> 
+                            </div>
+
+
+                              <div class="form-group col-md-2">
+                                <strong><label for="inputZip">Postal code</label></strong>
+                                <input type="text" class="form-control" id="inputZip">
+                              </div>
+          </div>
+          <!-- Country section endss--> 
+            <hr>
+          <!-- Phone section begins-->
+          <div class="form-row" >
+              <div class="form-group col-md-1">
+                  <strong><label for="countryCode">Code</label></strong>
+                  <input type="text" readonly class="form-control" id="countryCode" value="+1">
+              </div>
+              <div class="form-group col-md-3">
+                  <strong><label for="inputHomePhone">Home phone</label></strong>
+                  <input type="text" class="form-control format-phone" id="inputHomePhone">
+              </div>
+              <div class="form-group col-md-3">
+                  <strong><label for="inputMobilePhone">Mobile phone</label></strong>
+                  <input type="text" class="form-control format-phone" id="inputMobilePhone"> 
+              </div>
+              <div class="form-group col-md-3">
+                  <strong><label for="inputWorkPhone">Work phone</label></strong>
+                  <input type="text" class="form-control format-phone" id="inputWorkPhone">
+              </div>
+              <div class="form-group col-md-2">
+                  <strong><label for="inputWorkPhoneExt">Ext</label></strong>
+                  <input type="text" class="form-control" id="inputWorkPhoneExt">
+              </div> 
+          </div>
+          <!-- Phone section endss-->
+                
+          <!-- Note section begins--> 
+          <div class="form-row">
+              <div class="form-group col-md-12">
+                  <strong><label for="inputNote">Notes</label></strong>
+                  <input type="text" class="form-control" id="inputNote">
+              </div>
+          </div>   
+          <!-- Note section ends-->
+
+          <!-- Collapsable buttons starts--> 
+          <button type="button" class="btn btn-custom-collapse" aria-expanded="false" data-toggle="collapse" data-target="#spouse">Spouse info 
+            <i class="fa fa-chevron-up pull-right"></i>
+            <i class="fa fa-chevron-down pull-right"></i> 
+          </button>
+
+          <button type="button" class="btn btn-custom-collapse"  aria-expanded="false" data-toggle="collapse" data-target="#children">Children info
+            <i class="fa fa-chevron-up pull-right"></i>
+            <i class="fa fa-chevron-down pull-right"></i>
+          </button>
+          <!-- Collapsable buttons ends-->
+          
+          <!-- Spouse Collapsable part starts-->
+          <div id="spouse" class="collapse">
+              <hr>
+
+              <div class="form-row">
+                <div class="form-group col-md-3">
+                  <strong><label for="inputSpFirstName">Spouse first name</label></strong>
+                  <input type="text" class="form-control" id="inputSpFirstName" placeholder="First name">
+                </div>
+
+                 <div class="form-group col-md-3">
+                  <strong><label for="inputSpLastName">Spouse middle Name</label></strong>
+                  <input type="text" class="form-control" id="inputSpMiddleName" placeholder="Middle name">
+                </div>
+                
+                <div class="form-group col-md-3">
+                  <strong><label for="inputSpLastName">Spouse last Name</label></strong>
+                  <input type="text" class="form-control" id="inputSpLastName" placeholder="Last name">
+                </div>
+
+                <div class="form-group col-md-3">
+                  <strong><label for="inputSpBirthday">Spouse Birthday</label></strong>
+                  <input type="date" class="form-control" id="inputSpBirthday" placeholder="25/12">
+                </div>
+            </div>
+
+            <hr>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <strong><label for="inputSpPersonalEmail">Spouse personal email</label></strong>
+                  <div class="input-group"> 
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">@</div>
+                    </div>
+                    <input type="email" class="form-control" id="inputSpPesronalEmail" placeholder="Spouse personal email">
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <strong><label for="inputSpWorkEmail">Spouse work email</label></strong>
+                  <div class="input-group"> 
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">@</div>
+                    </div>
+                    <input type="email" class="form-control" id="inputSpWorkEmail" placeholder="Spouse work email">
+                  </div>
+                </div>
+            </div>
+            <hr>
+                  <div class="form-row">
+                      <div class="form-group col-md-3">
+                        <strong><label for="inputSpHomephone">Spouse home phone</label></strong>
+                        <input type="text" class="form-control format-phone" id="inputCity">
+                      </div>
+                      <div class="form-group col-md-3">
+                        <strong><label for="inputSpMobilePhone">Spouse mobile phone</label></strong>
+                        <input type="text" class="form-control format-phone" id="inputSpMobilePhone"> 
+                      </div>
+                      <div class="form-group col-md-4">
+                        <strong><label for="inputSpWorkPhone">Spouse work phone</label></strong>
+                        <input type="text" class="form-control format-phone" id="inputSpWorkPhone">
+                      </div>
+                      <div class="form-group col-md-2">
+                        <strong><label for="inputSpWorkPhoneExt">Ext</label></strong>
+                        <input type="text" class="form-control" id="inputSpWorkPhoneExt">
+                      </div> 
+                  </div>
+              <hr>
+          </div>
+          <!-- Spouse Collapsable part ends-->  
+
+          <!-- Children Collapsable part starts-->
+          <div id="children" class="collapse">
+                 <hr>
+                   <div class="form-row">
+
+                         <div class="form-group col-md-4">
+                           <strong><label for="inputCh1FirstName">First child</label></strong>
+                           <input type="text" class="form-control" id="inputCh1FirstName" placeholder="First name">
+                         </div>
+         
+                         <div class="form-group col-md-4">
+                           <strong><label for="inputCh1LastName">Middle Name</label></strong>
+                           <input type="text" class="form-control" id="inputCh1MiddleName" placeholder="Middle name">
+                         </div>
+                         
+                         <div class="form-group col-md-4">
+                           <strong><label for="inputCh1Birthday">Birthday</label></strong>
+                           <input type="date" class="form-control" id="inputCh1Birthday" placeholder="25/12">
+                         </div>
+                   
+                   </div> 
+                   <div class="form-row">
+
+                         <div class="form-group col-md-4">
+                           <strong><label for="inputCh2FirstName">Second child</label></strong>
+                           <input type="text" class="form-control" id="inputCh2FirstName" placeholder="First name">
+                         </div>
+         
+                         <div class="form-group col-md-4">
+                           <strong><label for="inputCh2LastName">Middle Name</label></strong>
+                           <input type="text" class="form-control" id="inputCh2MiddleName" placeholder="Middle name">
+                         </div>
+                         
+                         <div class="form-group col-md-4">
+                           <strong><label for="inputCh2Birthday">Birthday</label></strong>
+                           <input type="date" class="form-control" id="inputCh2Birthday" placeholder="25/12">
+                         </div>
+                   </div>  
+                   <div class="form-row">
+
+                     <div class="form-group col-md-4">
+                       <strong><label for="inputCh3FirstName">Third child</label></strong>
+                       <input type="text" class="form-control" id="inputCh3FirstName" placeholder="First name">
+                     </div>
+     
+                     <div class="form-group col-md-4">
+                       <strong><label for="inputCh3LastName">Middle Name</label></strong>
+                       <input type="text" class="form-control" id="inputCh3MiddleName" placeholder="Middle name">
+                     </div>
+                     
+                     <div class="form-group col-md-4">
+                       <strong><label for="inputCh3Birthday">Birthday</label></strong>
+                       <input type="date" class="form-control" id="inputCh3Birthday" placeholder="25/12">
+                     </div>
+               
+                   </div> 
+                   <div class="form-row">
+
+                      <div class="form-group col-md-4">
+                        <strong><label for="inputCh2FirstName">Forth child</label></strong>
+                        <input type="text" class="form-control" id="inputCh4FirstName" placeholder="First name">
+                      </div>
+
+                      <div class="form-group col-md-4">
+                        <strong><label for="inputCh4LastName">Middle Name</label></strong>
+                        <input type="text" class="form-control" id="inputCh4MiddleName" placeholder="Middle name">
+                      </div>
+                      
+                      <div class="form-group col-md-4">
+                        <strong><label for="inputCh4Birthday">Birthday</label></strong>
+                        <input type="date" class="form-control" id="inputCh4Birthday" placeholder="25/12">
+                      </div>
+                  </div>    
+          </div>   
+          <!-- Children Collapsable part ends-->            
+
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-custom-blue">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+    
