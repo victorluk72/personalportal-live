@@ -1,22 +1,75 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load tz %}
 {% block title %}| Weather{% endblock %}
 
 {% block content %}
-   
+
 <!-- Main area begins -->
 <section id="main">
-        <div class="container-fluid">
-          <div class="row">
+  <div class="container-fluid">
+   <div class="row">
 
-             <!-- Side bar begins-take 2 columns out of 12 -->
-              {% include 'sidebar.html'%}
-             <!-- Side bar ends -->
-             
-             <p>Weather goes here</p>
+    <!-- Side bar begins-take 2 columns out of 12 -->
+    {% include 'sidebar.html'%}
+    <!-- Side bar ends -->
+      {% if l_of_w %}
+      {% if l_of_w == "Error" %}
+      Error occured...
+      {% else %}
+      
+      <div class="col-md-10">  
+    <!--<div class="card-deck"> -->
+        <!--<div class="card-columns">-->
+      <div class="row">
+        {% for  weather in l_of_w %}
+        <div class="card col-3 mb-3 mr-3" >
+             {% if weather.lat == 43.46 %}
+              <h5 class="card-header bg-transparent"> Oakville, Canada</h5>
+              {% elif weather.lat == 48.57 %}
+              <h5 class="card-header bg-transparent"> Lugansk, Ukraine</h5>
+              {% elif weather.lat == 49.83 %}
+              <h5 class="card-header bg-transparent"> Lviv, Ukraine</h5>
+              {% elif weather.lat == 41.14 %}
+              <h5 class="card-header bg-transparent"> Porto, Portugal</h5>
+              {% elif weather.lat == 43.42 %}
+              <h5 class="card-header bg-transparent"> Servian, France</h5>
+              {% elif weather.lat == 19.3 %}
+              <h5 class="card-header bg-transparent"> George Town, Caymans</h5>
+              {% elif weather.lat == 26 %}
+              <h5 class="card-header bg-transparent"> Hollywood, Florida</h5>
+             {% endif %}
+
+            <div class="card-body"> 
+            <p class="card-text"> {{ cur_date|timezone:weather.timezone|date:"D, F j P" }} </p>
+            <p class="card-text"> <img src="http://openweathermap.org/img/wn/{{weather.current.weather.0.icon}}.png"> 
+               {{weather.current.weather.0.description|title }}</p>
+            <p class="card-text degree cel">{{weather.current.temp|floatformat:"1"}} </p>
+            <p class="card-text"> Feels like {{weather.current.feels_like|floatformat:"1"}}</p>
+            <p class="card-text">Humidity: {{weather.current.humidity}}%  Wind: {{weather.current.wind_speed}} m/c</p>
           </div>
+          <div class="row">
+            <table class="table">
+                <body>
+                <tr>
+                     <td class="cel1">{{weather.daily.0.temp.day|floatformat:"1"}}</td>
+                     <td class="cel1">{{weather.daily.1.temp.day|floatformat:"1"}}</td>
+                     <td class="cel1">{{weather.daily.2.temp.day|floatformat:"1"}}</td>
+                     <td class="cel1">{{weather.daily.3.temp.day|floatformat:"1"}}</td>
+                     <td class="cel1">{{weather.daily.4.temp.day|floatformat:"1"}}</td>
+                </tr>
+              </body>
+            </table>    
+          </div>
+        </div>
+        {% endfor %}
       </div>
-</section>
-<!-- Main area ends -->   
 
+    </div> <!--End of col-md-10-->
+      {% endif %}
+      {% endif %}
+
+      </div>
+  </div>
+</section>
 {% endblock %}

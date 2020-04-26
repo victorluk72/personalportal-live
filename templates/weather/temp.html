@@ -1,0 +1,28 @@
+
+<p class="card-text">Min: {{weather.main.temp_min}}C Max {{weather.main.temp_max}}C</p>
+
+
+current_icon = api_w['weather']['icon']
+img_src = "http://openweathermap.org/img/wn/10d.png"
+
+<span>&#8451;</span>
+
+fa fa-tint text-info
+<p class="card-text"> {% now "D f A" %} </p>
+
+
+     <ul class="list-group list-group-horizontal justify-content-center ">
+        <li class="list-group-item">{{weather.daily.0.temp.day}}</li>
+        <li class="list-group-item">{{weather.daily.1.temp.day}}</li>
+        <li class="list-group-item">{{weather.daily.2.temp.day}}</li>
+      </ul> 
+      
+      <td>{{<weather class="daily 0"></weather>.temp.day}}</td>
+
+      {% for i in simpe_count %} 
+       
+      {% endfor %}
+      scope="col"
+      table-bordered
+      
+      card-footer bg-transparent

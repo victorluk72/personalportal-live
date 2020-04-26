@@ -29,6 +29,9 @@ DEBUG = config('DEBUG',  cast=bool)
 
 ALLOWED_HOSTS = ['vl-personalportal.herokuapp.com', 'localhost']
 
+# SESSION AGE 5 Minutes
+SESSION_COOKIE_AGE = 172800
+
 
 # Application definition
 
@@ -127,7 +130,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Toronto'
 
 USE_I18N = True
 

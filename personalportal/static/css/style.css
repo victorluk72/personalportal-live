@@ -92,6 +92,33 @@ a.logo {
   text-align: center;
 }
 
+/*Degree */
+.degree {
+  font-size: 50px;
+}
+
+.cel::after{
+  content: "\2103";
+  position: absolute;
+  font-size: 25px;
+  margin-top: .9rem; 
+}
+
+.cel1::after{
+  content: "\00B0";
+}
+
+.positive {background-color: bisque;
+           color: #e99a1b; }
+.negative {background-color:aqua;
+           color:aqua}
+
+.card-footer.list-group-horizontal.list-group-item {
+  margin-bottom: 0;
+  margin-left: -4px;
+  margin-right: 0;
+  text-align:left;
+}
 
 /* Custome from https://work.smarchal.com/twbscolor/ */
 .navbar {
