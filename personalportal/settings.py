@@ -144,7 +144,7 @@ USE_TZ = True
 
 # This is static file settings
 # This collect static from all app to main 'static'
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'personalportal/static') 
