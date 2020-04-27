@@ -98,11 +98,11 @@ WSGI_APPLICATION = 'personalportal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DBNAME'),  
-        'USER': config('DBUSER'),
-        'PASSWORD': config('DBPASSWORD'),
-        'HOST': config('DBHOST'),
-        'PORT': '5432',
+        'NAME': 'pp_prod_db',  
+        'USER': 'samsebeskazal',
+        'PASSWORD': 'viktor321q',
+        'HOST': 'personalportal.cka5p5b6ir1z.us-east-2.rds.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
