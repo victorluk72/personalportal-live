@@ -98,10 +98,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pp_prod_db',  
-        'USER': config('DBUSER'),
-        'PASSWORD': config('DBPASSWORD'),
-        'HOST': config('DBHOST'),
-        'PORT': '5432'
+        'USER': 'samsebeskazal',
+        'PASSWORD': 'viktor321q',
+        'HOST': 'personalportal.cka5p5b6ir1z.us-east-2.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
