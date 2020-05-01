@@ -21,6 +21,7 @@ def func_weather(request):
     print(geoloc)
 
     l_of_w = []
+    my_range = [0,1,2,3,4]
     cur_date = datetime.datetime.now()
 
     for lat, lon in zip(lats, lons):
@@ -46,7 +47,8 @@ def func_weather(request):
     args = {'l_of_w': l_of_w, 
             'cur_date':cur_date,
             'geoloc':geoloc,
-            'temp_color': temp_color
+            'temp_color': temp_color,
+            'my_range':my_range
             }
 
     return render(request, 'weather/weather.html', args)

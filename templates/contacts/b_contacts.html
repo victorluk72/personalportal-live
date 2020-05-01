@@ -60,7 +60,6 @@
                   <th scope="col">Business type</th>
                   <th scope="col">Contact name</th>
                   <th scope="col">Phone</th>
-                  <th scope="col">Email</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -71,8 +70,6 @@
                   <td>{{ business_contact.businessType }}</td>
                   <td>{{ business_contact.contactName }}</td>
                   <td>{{ business_contact.officePhone }} </td>
-                  <td>{{ business_contact.email }}</td>
-
                   <td>
                     <div class="btn-group">
                       <a class="btn btm-sm btn-success" href="{% url 'update_b_contact' business_contact.id %}"><i

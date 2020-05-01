@@ -51,13 +51,13 @@
           <div class="row">
             <table class="table">
                 <body>
-                <tr>
-                     <td class="cel1">{{weather.daily.0.temp.day|floatformat:"1"}}</td>
-                     <td class="cel1">{{weather.daily.1.temp.day|floatformat:"1"}}</td>
-                     <td class="cel1">{{weather.daily.2.temp.day|floatformat:"1"}}</td>
-                     <td class="cel1">{{weather.daily.3.temp.day|floatformat:"1"}}</td>
-                     <td class="cel1">{{weather.daily.4.temp.day|floatformat:"1"}}</td>
-                </tr>
+                    <tr>
+                        <td>{{weather.daily.0.temp.day|floatformat:"1"}}<span>&#176;</span></td>
+                        <td>{{weather.daily.1.temp.day|floatformat:"1"}}<span>&#176;</span></td>
+                        <td>{{weather.daily.2.temp.day|floatformat:"1"}}<span>&#176;</span></td>
+                        <td >{{weather.daily.3.temp.day|floatformat:"1"}}<span>&#176;</span></td>
+                        <td>{{weather.daily.4.temp.day|floatformat:"1"}}<span>&#176;</span></td>
+                   </tr>
               </body>
             </table>    
           </div>
