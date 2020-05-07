@@ -24,7 +24,7 @@ def func_p_contacts(request):
     personal_contacts = myAdvPersonalFilter.qs
 
     # Paginator logic here
-    paginator = Paginator(personal_contacts, 4)
+    paginator = Paginator(personal_contacts, 12)
     page = request.GET.get('page')
     paged_personal_contacts = paginator.get_page(page)
 
@@ -51,7 +51,7 @@ def func_b_contacts(request):
     business_contacts = myAdvBusinessFilter.qs
 
     # Paginator logic here
-    paginator = Paginator(business_contacts, 4)
+    paginator = Paginator(business_contacts, 12)
     page = request.GET.get('page')
     paged_business_contacts = paginator.get_page(page)
 
@@ -92,7 +92,7 @@ def add_b_contact(request):
 
 # ----Update personal contact---------------
 @login_required(login_url='login')
-#https://stackoverflow.com/questions/18489393/django-submit-two-different-forms-with-one-submit-button
+# https://stackoverflow.com/questions/18489393/django-submit-two-different-forms-with-one-submit-button
 def update_p_contact(request, pk_p_contact_id):
     p_contact = PersonalContact.objects.get(id=pk_p_contact_id)
     form_p = PersonalContactForm(instance=p_contact)
@@ -103,7 +103,8 @@ def update_p_contact(request, pk_p_contact_id):
 
     if request.method == 'POST':
         form_p = PersonalContactForm(request.POST, instance=p_contact)
-        form_c = ChildFormset(request.POST, instance=p_contact) #, prefix = 'form_c')
+        # , prefix = 'form_c')
+        form_c = ChildFormset(request.POST, instance=p_contact)
         if form_p.is_valid() and form_c.is_valid():
             form_p.save()
             form_c.save()
@@ -111,7 +112,7 @@ def update_p_contact(request, pk_p_contact_id):
             return redirect('/contacts/p_contacts')
         else:
             print('invalid p_form')
-            #print(form_p)
+            # print(form_p)
 
         # if form_c.is_valid():
         #     form_c.save()
@@ -119,7 +120,7 @@ def update_p_contact(request, pk_p_contact_id):
         #     return redirect('/contacts/p_contacts')
         # else:
         #     print('invalid c_form')
-        #     #print(form_c)    
+        #     #print(form_c)
 
     args = {'form_p': form_p,
             'form_c': form_c}

@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = config('DEBUG',  cast=bool)
 DEBUG = False
-ALLOWED_HOSTS = ['vl-personalportal.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['vl-personalportal.herokuapp.com', 'localhost', 'victorluk.com']
 
 # SESSION AGE 5 Minutes
 SESSION_COOKIE_AGE = 172800
@@ -97,10 +97,10 @@ WSGI_APPLICATION = 'personalportal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pp_prod_db',  
+        'NAME': 'pp_prod_db',
         'USER': 'samsebeskazal',
         'PASSWORD': os.getenv('DBPASSWORD'),
-        'HOST': 'personalportal.cka5p5b6ir1z.us-east-2.rds.amazonaws.com',
+        'HOST': os.getenv('DBHOST'),
         'PORT': '5432',
     }
 }
@@ -146,7 +146,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'personalportal/static') 
+    os.path.join(BASE_DIR, 'personalportal/static')
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
@@ -156,4 +156,4 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
-#S3 BUCKETS CONFIG - all in env
+# S3 BUCKETS CONFIG - all in env

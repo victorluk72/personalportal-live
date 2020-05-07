@@ -34,19 +34,19 @@
                             <!--Begin row #1 of the form-->
                             <div class="form-row">
                                 <div class="form-group col-md-3">
-                                    <strong><label for="inputBusnessType">Busness Type</label></strong>
+                                    <strong><label for="inputBusnessType">Business Type</label></strong>
                                     <div class="input-group mb-3">
-                                         {% if 'add_b_contact' in request.path %}
-                                            <div class="input-group-append">
-                                                <button class="btn btn btn-custom-blue" data-toggle="modal" data-target="#newTypeModal">+</button>
-                                            </div>
-                                         {% endif %}
+                                        {% if 'add_b_contact' in request.path %}
+                                        <div class="input-group-append">
+                                            <button class="btn btn btn-custom-blue" data-toggle="modal" data-target="#newTypeModal">+</button>
+                                        </div>
+                                        {% endif %}
                                         {% render_field form_b.businessType class="form-control" %}
                                     </div>
                                 </div>
 
                                 <div class="form-group col-md-3">
-                                    <strong><label for="inputCompanyName">Busness Name</label></strong>
+                                    <strong><label for="inputCompanyName">Business Name</label></strong>
                                     {% render_field form_b.businessName class="form-control" %}
                                 </div>
 
@@ -65,11 +65,8 @@
                             <!--Begin row #2 of the form-->
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <strong><label for="inputEmail">Eamil</label></strong>
+                                    <strong><label for="inputEmail">Email</label></strong>
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">@</div>
-                                        </div>
                                         {% render_field form_b.email class="form-control" %}
                                     </div>
                                 </div>
