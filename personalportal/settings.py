@@ -23,10 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = config('DEBUG',  cast=bool)
 DEBUG = False
-ALLOWED_HOSTS = ['vl-personalportal.herokuapp.com', 'localhost', 'victorluk.com']
+ALLOWED_HOSTS = ['vl-personalportal.herokuapp.com',
+                 'localhost', 'victorluk.com']
 
 # SESSION AGE 5 Minutes
 SESSION_COOKIE_AGE = 172800
@@ -94,11 +96,22 @@ WSGI_APPLICATION = 'personalportal.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'pp_prod_db',
+#         'USER': 'samsebeskazal',
+#         'PASSWORD': os.getenv('DBPASSWORD'),
+#         'HOST': os.getenv('DBHOST'),
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pp_prod_db',
-        'USER': 'samsebeskazal',
+        'NAME': 'vandxnqm',
+        'USER': 'vandxnqm',
         'PASSWORD': os.getenv('DBPASSWORD'),
         'HOST': os.getenv('DBHOST'),
         'PORT': '5432',

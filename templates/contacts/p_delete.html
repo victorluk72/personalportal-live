@@ -6,7 +6,7 @@
 <div class="row justify-content-md-center">
     <div class="col-md-3">
         <div class="card card-body">
-            <p>Are you sure you want to delete {{p_contact.lstName}}?</p>
+            <p>Are you sure you want to delete{{p_contact.lastName}}?</p>
             <form action="{% url 'delete_p_contact' p_contact.id %}" method="POST">
                 {% csrf_token %}
 

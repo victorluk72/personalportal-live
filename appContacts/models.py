@@ -21,6 +21,8 @@ class PersonalContact(models.Model):
     country = models.CharField(
         max_length=50, blank=True, choices=COUNTRYCODE, default='Canada')
     country_code = models.CharField(max_length=20, blank=True)
+    latitude = models.FloatField(null=True)
+    longitude = models.FloatField(null=True)
     company = models.CharField(max_length=100, blank=True)
     emailPersonal = models.EmailField(max_length=100, blank=True)
     emailWork = models.EmailField(max_length=100, blank=True)
@@ -92,6 +94,8 @@ class BusinessContact(models.Model):
     state = models.CharField(max_length=100, blank=True, choices=STATECODE)
     country = models.CharField(max_length=50, blank=True, choices=COUNTRYCODE)
     country_code = models.CharField(max_length=20, blank=True)
+    latitude = models.FloatField(null=True)
+    longitude = models.FloatField(null=True)
     officePhone = models.CharField(max_length=25, blank=True)
     officePhoneExt = models.CharField(max_length=10, blank=True)
     mobilePhone = models.CharField(max_length=25, blank=True)

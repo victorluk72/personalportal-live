@@ -57,8 +57,8 @@
             <table class="table table-hover table-striped table-bordered">
               <thead>
                 <tr>
-                  <th scope="col">First name</th>
                   <th scope="col">Last Name</th>
+                  <th scope="col">First name</th>
                   <th scope="col">Cell phone</th>
                   <th scope="col">Home phone</th>
                   <th scope="col">Email</th>
@@ -68,8 +68,8 @@
               <tbody>
                 {% for personal_contact in personal_contacts %}
                 <tr>
-                  <td>{{ personal_contact.firstName }}</td>
                   <td>{{ personal_contact.lastName }}</td>
+                  <td>{{ personal_contact.firstName }}</td>
                   <td>{{ personal_contact.mobilePhone }}</td>
                   <td>{{ personal_contact.homePhone }}</td>
                   <td>{{ personal_contact.emailPersonal }}</td>
