@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 from django.contrib.messages import constants as messages
 import os
 from decouple import config
+import cloudinary
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,11 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+#SECRET_KEY = os.getenv('SECRET_KEY')
 SECRET_KEY = os.getenv('SECRET_KEY')
-
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = config('DEBUG',  cast=bool)
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['vl-personalportal.herokuapp.com',
                  'localhost', 'victorluk.com']
 
@@ -53,6 +54,10 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'admin_honeypot',
     'storages',
+    'cloudinary',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -96,16 +101,6 @@ WSGI_APPLICATION = 'personalportal.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'pp_prod_db',
-#         'USER': 'samsebeskazal',
-#         'PASSWORD': os.getenv('DBPASSWORD'),
-#         'HOST': os.getenv('DBHOST'),
-#         'PORT': '5432',
-#     }
-# }
 
 DATABASES = {
     'default': {
@@ -169,4 +164,18 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
-# S3 BUCKETS CONFIG - all in env
+# Configuration for Cloudinary
+cloudinary.config(
+    cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME'),
+    api_key=os.getenv('CLOUDINARY_API_KEY'),
+    api_secret=os.getenv('CLOUDINARY_API_SECRET'),
+    secure=True
+)
+
+# Rest Framework authentication
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication'
+    ]
+}

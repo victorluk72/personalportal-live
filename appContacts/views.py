@@ -2,11 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 # This to bring dictionaries from chices.py file
 from appContacts.models import PersonalContact, ChildContact, BusinessContact, BusinesType
+from accounts.models import Profile
 from appContacts.forms import BusinessContactForm, PersonalContactForm, ChildForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from .filters import PContactFilter, BContactFilter, BAdvContactFilter, PAdvContactFilter
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.forms import inlineformset_factory
+from appContacts.utilities import add_coordinates
 
 
 # View function for p_contacts.html page
@@ -14,6 +17,7 @@ from django.forms import inlineformset_factory
 def func_p_contacts(request):
 
     personal_contacts = PersonalContact.objects.all()
+    p_pag_count = request.user.user_profile.user_p_pagination
 
     # Filtering logic here
     myPersonalFilter = PContactFilter(request.GET, queryset=personal_contacts)
@@ -24,7 +28,7 @@ def func_p_contacts(request):
     personal_contacts = myAdvPersonalFilter.qs
 
     # Paginator logic here
-    paginator = Paginator(personal_contacts, 12)
+    paginator = Paginator(personal_contacts, p_pag_count)
     page = request.GET.get('page')
     paged_personal_contacts = paginator.get_page(page)
 
@@ -41,6 +45,7 @@ def func_b_contacts(request):
 
     business_contacts = BusinessContact.objects.all()
     business_types = BusinesType.objects.all().order_by('name')
+    b_pag_count = request.user.profile.user_b_pagination
 
     # Filtering logic here
     myBusinessFilter = BContactFilter(request.GET, queryset=business_contacts)
@@ -51,7 +56,7 @@ def func_b_contacts(request):
     business_contacts = myAdvBusinessFilter.qs
 
     # Paginator logic here
-    paginator = Paginator(business_contacts, 12)
+    paginator = Paginator(business_contacts, b_pag_count)
     page = request.GET.get('page')
     paged_business_contacts = paginator.get_page(page)
 
@@ -71,6 +76,7 @@ def add_p_contact(request):
         form_p = PersonalContactForm(request.POST)
         if form_p.is_valid():
             form_p.save()
+
             return redirect('/contacts/p_contacts')
 
     args = {'form_p': form_p}
@@ -95,6 +101,10 @@ def add_b_contact(request):
 # https://stackoverflow.com/questions/18489393/django-submit-two-different-forms-with-one-submit-button
 def update_p_contact(request, pk_p_contact_id):
     p_contact = PersonalContact.objects.get(id=pk_p_contact_id)
+    print('parent id is ', p_contact.pk)
+    # 2085a147-bb68-4854-a665-f222f298e93f
+    p_kids = ChildContact.objects.filter(parent=p_contact)
+    print('p_kids are', p_kids)
     form_p = PersonalContactForm(instance=p_contact)
 
     ChildFormset = inlineformset_factory(PersonalContact, ChildContact, fields=(
@@ -108,6 +118,7 @@ def update_p_contact(request, pk_p_contact_id):
         if form_p.is_valid() and form_c.is_valid():
             form_p.save()
             form_c.save()
+
             print('valid p_form')
             return redirect('/contacts/p_contacts')
         else:
@@ -123,7 +134,9 @@ def update_p_contact(request, pk_p_contact_id):
         #     #print(form_c)
 
     args = {'form_p': form_p,
-            'form_c': form_c}
+            'form_c': form_c,
+            'parent': p_contact,
+            'kids': p_kids}
     return render(request, 'contacts/personal_update1.html', args)
 
 
@@ -141,26 +154,6 @@ def update_b_contact(request, pk_b_contact_id):
 
     args = {'form_b': form_b}
     return render(request, 'contacts/business_update1.html', args)
-
-
-# ----Update business contact---------------
-# @login_required(login_url='login')
-# def update_b_contact(request, pk_b_contact_id):
-
-#     b_contact = BusinessContact.objects.get(id=pk_b_contact_id)
-#     business_types = BusinesType.objects.all().order_by('name')
-
-#     if request.method == 'POST':
-#         sameid = request.POST['id']
-#         print()
-
-#     args = {'b_contact': b_contact,
-#             'business_types': business_types,
-#             'state_choices': state_choices,
-#             'country_choices': country_choices
-#             }
-#     return render(request, 'contacts/business_update.html', args)
-
 
 # ----Delete personal contact---------------
 @login_required(login_url='login')

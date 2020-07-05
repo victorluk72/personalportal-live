@@ -107,11 +107,18 @@
                   <strong><label for="inputAddress">Address</label></strong>
                   {% render_field form_p.address1 class="form-control" %}
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-5">
                   <strong><label for="inputAddress2">Address 2</label></strong>
                   {% render_field form_p.address2 class="form-control" %}
                 </div>
+                <div class="form-group col-md-1 text-right">
+                  <strong><label for="inputAddress2">Map</label></strong>
+                  <button type="button" class="btn btn-custom-blue" data-toggle="modal" data-target="#modalMap">
+                    <i class="fa fa-map-marker"></i>
+                  </button>
+                </div>
               </div>
+
               <!--End of row #4 (Address) of the form-->
 
               <!--Begin row #5 (more Address ) of the form-->
@@ -267,11 +274,11 @@
                 <hr>
                 <!-- <form action="" method="POST">
                 {% csrf_token %} -->
-                <table class="table table-hover table-striped table-bordered">
-                  {{ form_c.as_table }}
-                </table>
-
                 <!-- <table class="table table-hover table-striped table-bordered">
+                  {{ form_c.as_table }}
+                </table> -->
+
+                <table class="table table-hover table-striped table-bordered">
                   <thead>
                     <tr>
                       <th scope="col">Child first name</th>
@@ -280,16 +287,33 @@
                     </tr>
                   </thead>
                   <tbody>
-                    {{ form_c.management_form }}
+                    {% for kid in kids %}
+                    <tr>
+                      <td>
+                        <input type="hidden" name="parentId" value="{{parent.pk}}" />
+                        <input type="hidden" name="childId" value="{{kid.pk}}" />
+                        <input type="text" name="firstName" value="{{kid.firstName}}" maxlength="100"
+                          class="form-control"></td>
+                      <td><input type="text" name="lastName" value="{{kid.lastName}}" maxlength="100"
+                          class="form-control"></td>
+                      <td><input type="text" name="birthday" value="{{kid.birthday}}" placeholder="yyyy-mm-dd"
+                          class="form-control date-picker"></td>
+                    </tr>
+                    {% endfor %}
+
+                    <!-- {{ form_c.management_form }}
                     {% for form in form_c %}
+
+
                     <tr>
                       <td>{% render_field form.firstName class="form-control" %}</td>
                       <td>{% render_field form.lastName class="form-control" %}</td>
-                      <td>{% render_field form.birthday class="form-control date-picker" placeholder="yyyy-mm-dd" %}</td>
+                      <td>{% render_field form.birthday class="form-control date-picker" placeholder="yyyy-mm-dd" %}
+                      </td>
                     <tr>
-                      {% endfor %}
+                      {% endfor %} -->
                   </tbody>
-                </table> -->
+                </table>
 
               </div>
               <!-- Children Collapsable part ends-->
@@ -314,5 +338,6 @@
 
 <!-- Modal  begins -->
 {% include 'contacts/_modal_new_b_type.html'%}
-<!-- Modal Personal/Business contact ends -->
+{% include 'contacts/_modal_map.html'%}
+<!-- Modal Personal ends -->
 {% endblock %}

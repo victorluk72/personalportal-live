@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}| Profile{% endblock %}
+
+{% block content %}
+
+<!-- Main area begins -->
+<section id="main">
+  <div class="container-fluid">
+    <div class="row">
+
+      <!-- Side bar begins-take 2 columns out of 12 -->
+      {% include 'sidebar.html'%}
+      <div class="col-md-10">
+        <img src="{{ user.user_profile.avatar.url }}" width="90" , height="160">
+        <p>User name: {{ user.username }}</p>
+        <p>First name: {{ user.first_name }}</p>
+        <p>Last name: {{ user.last_name }}</p>
+        <p>Email: {{ user.email }}</p>
+
+        <!-- <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <p>Upload new avatar</p>
+          {{form.avatar}}
+          <input type="submit" value="Upload new avatar"> 
+        </form>-->
+      </div>
+
+    </div>
+    <!-- Main area ends -->
+
+  </div>
+  </div>
+</section>
+</main>
+
+
+{% endblock %}

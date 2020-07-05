@@ -3,11 +3,14 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('samsebeskazal/', admin.site.urls),
     path('', include('pages.urls')),
     path('accounts/', include('accounts.urls')),
+    path('accounts/api/rest-auth/', include('rest_auth.urls')),
+    path('api-auth/', include('rest_framework.urls')),
     path('contacts/', include('appContacts.urls')),
     path('calendar/', include('appCalendar.urls')),
     path('news/', include('appNews.urls')),
