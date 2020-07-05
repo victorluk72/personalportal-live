@@ -3,7 +3,7 @@ import googlemaps
 # ----Get coordinates from address---------------
 def add_coordinates(cont_address):
     # Set Google maps Key
-    gmaps = googlemaps.Client(key="AIzaSyBvbSG3K4MH1xTrc1_IuElKHw6RJvQ9xIQ")
+    gmaps = googlemaps.Client(key=os.getenv("GOOGLE_MAPS_KEY"))
 
     #ta = '1594 Lancaster dr, Oakville, ON, L6H 2Z6'
     # Geocoding an address
