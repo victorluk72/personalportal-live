@@ -36,18 +36,18 @@
                 <div class="form-group col-md-3">
                   <strong><label for="inputBusnessType">Contact type</label></strong>
                   <div class="input-group mb-3">
-                    {% render_field form_p.contactType class="form-control" %}
+                      <!--{ render_field form_p.contactType class="form-control" }-->
                   </div>
                 </div>
 
                 <div class="form-group col-md-3">
                   <strong><label for="inputFirstName">First name</label></strong>
-                  {% render_field form_p.firstName class="form-control" %}
+                  <!--{ render_field form_p.firstName class="form-control"}-->
                 </div>
 
                 <div class="form-group col-md-3">
                   <strong><label for="inputLastName">Last Name</label></strong>
-                  {% render_field form_p.lastName class="form-control" %}
+                  <!--{ render_field form_p.lastName class="form-control" -->
                 </div>
 
                 <div class="form-group col-md-3">
@@ -63,20 +63,20 @@
                 <div class="form-group col-md-4">
                   <strong><label for="inputPesronalEmail">Personal email</label></strong>
                   <div class="input-group">
-                    {% render_field form_p.emailPersonal class="form-control" %}
+                      <!--{ render_field form_p.emailPersonal class="form-control" }-->
                   </div>
                 </div>
 
                 <div class="form-group col-md-4">
                   <strong><label for="inputWorkEmail">Work email</label></strong>
                   <div class="input-group">
-                    {% render_field form_p.emailWork class="form-control" %}
+                      <!--{ render_field form_p.emailWork class="form-control" }-->
                   </div>
                 </div>
 
                 <div class="form-group col-md-4">
                   <strong><label for="inputSkype">Skype</label></strong>
-                  {% render_field form_p.skype class="form-control" %}
+                  <!--{ render_field form_p.skype class="form-control" }-->
                 </div>
               </div>
               <!--End of row #2 of the form-->
@@ -85,17 +85,17 @@
               <div class="form-row">
                 <div class="form-group col-md-4">
                   <strong><label for="inputCompany">Company name</label></strong>
-                  {% render_field form_p.company class="form-control" %}
+                  <!--{ render_field form_p.company class="form-control" }-->
                 </div>
 
                 <div class="form-group col-md-4">
                   <strong><label for="inputSite">Website</label></strong>
-                  {% render_field form_p.website class="form-control" %}
+                  <!-- { render_field form_p.website class="form-control" }-->
                 </div>
 
                 <div class="form-group col-md-4">
                   <strong><label for="inputFacebook">Facebook</label></strong>
-                  {% render_field form_p.facebook class="form-control" %}
+                  <!--{ render_field form_p.facebook class="form-control"}-->
                 </div>
               </div>
               <!--End of row #3 of the form-->
@@ -105,11 +105,11 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <strong><label for="inputAddress">Address</label></strong>
-                  {% render_field form_p.address1 class="form-control" %}
+                  <!-- { render_field form_p.address1 class="form-control" }-->
                 </div>
                 <div class="form-group col-md-5">
                   <strong><label for="inputAddress2">Address 2</label></strong>
-                  {% render_field form_p.address2 class="form-control" %}
+                  <!--{ render_field form_p.address2 class="form-control" }-->
                 </div>
                 <div class="form-group col-md-1 text-right">
                   <strong><label for="inputAddress2">Map</label></strong>
@@ -125,12 +125,12 @@
               <div class="form-row">
                 <div class="form-group col-md-2">
                   <strong><label for="selectCountry">Country</label></strong>
-                  {% render_field form_p.country class="form-control" id="selectCountry" %}
+                  <!--{ render_field form_p.country class="form-control" id="selectCountry" }-->
                 </div>
 
                 <div class="form-group col-md-4">
                   <strong><label for="inputCity">City</label></strong>
-                  {% render_field form_p.city class="form-control" %}
+                  <!--{ render_field form_p.city class="form-control" -->
                 </div>
                 <div class="form-group col-md-4">
                   <strong><label for="selectState">Province/State</label></strong>
@@ -149,27 +149,27 @@
               <div class="form-row">
                 <div class="form-group col-md-1">
                   <strong><label for="countryCode">Code</label></strong>
-                  {% render_field form_p.country_code|attr:"readonly" id="countryCode" class="form-control" %}
+                  <!--{ render_field form_p.country_code|attr:"readonly" id="countryCode" class="form-control" }-->
                 </div>
 
                 <div class="form-group col-md-3">
                   <strong><label for="inputHomePhone">Home phone</label></strong>
-                  {% render_field form_p.homePhone class="form-control format-phone" %}
+                  <!--{ render_field form_p.homePhone class="form-control format-phone" }-->
                 </div>
 
                 <div class="form-group col-md-3">
                   <strong><label for="inputMobilePhone">Mobile phone</label></strong>
-                  {% render_field form_p.mobilePhone class="form-control format-phone" %}
+                  <!--{ render_field form_p.mobilePhone class="form-control format-phone" }-->
                 </div>
 
                 <div class="form-group col-md-3">
                   <strong><label for="inputOfficePhone">Work phone</label></strong>
-                  {% render_field form_p.workPhone class="form-control format-phone" %}
+                  <!--{ render_field form_p.workPhone class="form-control format-phone" -->
                 </div>
 
                 <div class="form-group col-md-2">
                   <strong><label for="inputOfficePhoneExt">Ext</label></strong>
-                  {% render_field form_p.workPhoneExt class="form-control" %}
+                  <!--{ render_field form_p.workPhoneExt class="form-control" }-->
                 </div>
                 <hr>
               </div>
@@ -178,7 +178,7 @@
               <div class="form-row">
                 <div class="form-group col-md-12">
                   <strong><label for="inputNote">Notes</label></strong>
-                  {% render_field form_p.note class="form-control" %}
+                  <!--{ render_field form_p.note class="form-control"}-->
                 </div>
               </div>
               <!-- Note section ends-->
@@ -206,43 +206,43 @@
 
                   <div class="form-group col-md-3">
                     <strong><label for="inputSpBirthday">Spouse Birthday (yyyy-mm-dd)</label></strong>
-                    {% render_field form_p.spouseBirthday class="form-control date-picker" placeholder="yyyy-mm-dd" %}
+                    <!--{ render_field form_p.spouseBirthday class="form-control date-picker" placeholder="yyyy-mm-dd" }-->
                   </div>
                   <div class="form-group col-md-3">
                     <strong><label for="inputSpFirstName">Spouse first name</label></strong>
-                    {% render_field form_p.spouseFirstName class="form-control" %}
+                    <!--{ render_field form_p.spouseFirstName class="form-control" }-->
                   </div>
 
                   <div class="form-group col-md-3">
                     <strong><label for="inputSpLastName">Spouse middle Name</label></strong>
-                    {% render_field form_p.spouseMiddleName class="form-control" %}
+                    <!--{ render_field form_p.spouseMiddleName class="form-control" }-->
                   </div>
 
                   <div class="form-group col-md-3">
                     <strong><label for="inputSpLastName">Spouse last Name</label></strong>
-                    {% render_field form_p.spouseLastName class="form-control" %}
+                    <!-- render_field form_p.spouseLastName class="form-control" -->
                   </div>
                 </div>
 
                 <div class="form-row">
                   <div class="form-group col-md-1">
                     <strong><label for="countryCode">Code</label></strong>
-                    {% render_field form_p.country_code|attr:"readonly" id="countryCode_s" class="form-control" %}
+                    <!--{ render_field form_p.country_code|attr:"readonly" id="countryCode_s" class="form-control" }-->
                   </div>
 
                   <div class="form-group col-md-4">
                     <strong><label for="inputHomePhone">Spouse mobile phone</label></strong>
-                    {% render_field form_p.spouseMobilePhone class="form-control format-phone" %}
+                    <!--{ render_field form_p.spouseMobilePhone class="form-control format-phone" %}-->
                   </div>
 
                   <div class="form-group col-md-4">
                     <strong><label for="inputMobilePhone">Spouse work phone</label></strong>
-                    {% render_field form_p.spouseWorkPhone class="form-control format-phone" %}
+                    <!--{ render_field form_p.spouseWorkPhone class="form-control format-phone" }-->
                   </div>
 
                   <div class="form-group col-md-3">
                     <strong><label for="inputOfficePhoneExt">Ext</label></strong>
-                    {% render_field form_p.spouseworkPhoneExt class="form-control" %}
+                    <!--{ render_field form_p.spouseworkPhoneExt class="form-control" }-->
                   </div>
                 </div>
 
@@ -250,7 +250,7 @@
                   <div class="form-group col-md-6">
                     <strong><label for="inputPesronalEmail">Spouse personal email</label></strong>
                     <div class="input-group">
-                      {% render_field form_p.spouseEmailPersonal class="form-control" %}
+                        <!-- render_field form_p.spouseEmailPersonal class="form-control" }-->
                     </div>
                   </div>
 
@@ -260,7 +260,7 @@
                       <div class="input-group-prepend">
                         <div class="input-group-text">@</div>
                       </div>
-                      {% render_field form_p.spouseEmailBusiness class="form-control" %}
+                      <!--{ render_field form_p.spouseEmailBusiness class="form-control" }-->
                     </div>
                   </div>
                 </div>
@@ -275,9 +275,10 @@
                 <!-- <form action="" method="POST">
                 {% csrf_token %} -->
                 <!-- <table class="table table-hover table-striped table-bordered">
-                  {{ form_c.as_table }}
+                  { form_c.as_table }
                 </table> -->
 
+                <input type="hidden" name="parentId" value="{{parent.pk}}" />
                 <table class="table table-hover table-striped table-bordered">
                   <thead>
                     <tr>
@@ -290,28 +291,25 @@
                     {% for kid in kids %}
                     <tr>
                       <td>
-                        <input type="hidden" name="parentId" value="{{parent.pk}}" />
-                        <input type="hidden" name="childId" value="{{kid.pk}}" />
-                        <input type="text" name="firstName" value="{{kid.firstName}}" maxlength="100"
+                          <input type="hidden" name="child|{{ kid.pk }}|childId" value="{{kid.pk}}" />
+                        <input type="text" name="child|{{ kid.pk }}|firstName" value="{{kid.firstName}}" maxlength="100"
                           class="form-control"></td>
-                      <td><input type="text" name="lastName" value="{{kid.lastName}}" maxlength="100"
+                      <td><input type="text" name="child|{{ kid.pk }}|lastName" value="{{kid.lastName}}" maxlength="100"
                           class="form-control"></td>
-                      <td><input type="text" name="birthday" value="{{kid.birthday}}" placeholder="yyyy-mm-dd"
+                      <td><input type="text" name="child|{{ kid.pk }}|birthday" value="{{kid.birthday}}" placeholder="yyyy-mm-dd"
                           class="form-control date-picker"></td>
                     </tr>
                     {% endfor %}
-
-                    <!-- {{ form_c.management_form }}
-                    {% for form in form_c %}
-
-
                     <tr>
-                      <td>{% render_field form.firstName class="form-control" %}</td>
-                      <td>{% render_field form.lastName class="form-control" %}</td>
-                      <td>{% render_field form.birthday class="form-control date-picker" placeholder="yyyy-mm-dd" %}
-                      </td>
-                    <tr>
-                      {% endfor %} -->
+                      <td>
+                        <input type="hidden" name="newChildId" value="" />
+                        <input type="text" name="newChildFirstName" value="" maxlength="100"
+                          class="form-control"></td>
+                      <td><input type="text" name="newChildLastName" value="" maxlength="100"
+                          class="form-control"></td>
+                      <td><input type="text" name="newChildBirthday" value="" placeholder="yyyy-mm-dd"
+                          class="form-control date-picker"></td>
+                    </tr>
                   </tbody>
                 </table>
 
@@ -341,3 +339,4 @@
 {% include 'contacts/_modal_map.html'%}
 <!-- Modal Personal ends -->
 {% endblock %}
+

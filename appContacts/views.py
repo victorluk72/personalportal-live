@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from django.shortcuts import render, redirect
 from django.contrib import messages
 # This to bring dictionaries from chices.py file
@@ -101,40 +103,29 @@ def add_b_contact(request):
 # https://stackoverflow.com/questions/18489393/django-submit-two-different-forms-with-one-submit-button
 def update_p_contact(request, pk_p_contact_id):
     p_contact = PersonalContact.objects.get(id=pk_p_contact_id)
-    print('parent id is ', p_contact.pk)
-    # 2085a147-bb68-4854-a665-f222f298e93f
     p_kids = ChildContact.objects.filter(parent=p_contact)
-    print('p_kids are', p_kids)
-    form_p = PersonalContactForm(instance=p_contact)
-
-    ChildFormset = inlineformset_factory(PersonalContact, ChildContact, fields=(
-        'firstName', 'lastName', 'birthday',), can_delete=False, extra=1)
-    form_c = ChildFormset(instance=p_contact)
 
     if request.method == 'POST':
-        form_p = PersonalContactForm(request.POST, instance=p_contact)
-        # , prefix = 'form_c')
-        form_c = ChildFormset(request.POST, instance=p_contact)
-        if form_p.is_valid() and form_c.is_valid():
-            form_p.save()
-            form_c.save()
+        print("we are in POST, request.POST is:")
+        pprint(dict(request.POST))
+        for key, value in request.POST.items():
+            if key.startswith('child|'):
+                # Это данные ребёнка, формат — child|child_id|child_field
+                fields = key.split("|")
+                print('fields', fields)
+                child_id = fields[1]
+                child_field = fields[2]
 
-            print('valid p_form')
-            return redirect('/contacts/p_contacts')
-        else:
-            print('invalid p_form')
-            # print(form_p)
+                child = ChildContact.objects.get(pk=child_id)
+                if child_field != 'birthday':
+                    setattr(child, child_field, value)
+                child.save()
+            else:
+                # Это данные родителя
+                pass
 
-        # if form_c.is_valid():
-        #     form_c.save()
-        #     print('valid c_form')
-        #     return redirect('/contacts/p_contacts')
-        # else:
-        #     print('invalid c_form')
-        #     #print(form_c)
-
-    args = {'form_p': form_p,
-            'form_c': form_c,
+    args = {#'form_p': form_p,
+            #'form_c': form_c,
             'parent': p_contact,
             'kids': p_kids}
     return render(request, 'contacts/personal_update1.html', args)
