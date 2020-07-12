@@ -103,7 +103,6 @@ def add_b_contact(request):
 # https://stackoverflow.com/questions/18489393/django-submit-two-different-forms-with-one-submit-button
 def update_p_contact(request, pk_p_contact_id):
     p_contact = PersonalContact.objects.get(id=pk_p_contact_id)
-    p_kids = ChildContact.objects.filter(parent=p_contact)
 
     if request.method == 'POST':
         print("we are in POST, request.POST is:")
@@ -112,7 +111,6 @@ def update_p_contact(request, pk_p_contact_id):
             if key.startswith('child|'):
                 # Это данные ребёнка, формат — child|child_id|child_field
                 fields = key.split("|")
-                print('fields', fields)
                 child_id = fields[1]
                 child_field = fields[2]
 
@@ -122,13 +120,21 @@ def update_p_contact(request, pk_p_contact_id):
                 setattr(child, child_field, value)
                 child.save()
             else:
-                # Это данные родителя
+                # Save parent's data
                 pass
+        if request.POST.get('newChildFirstName') and request.POST.get('newChildLastName'):
+            # Save new Child
+            ChildContact.objects.create(
+                parent=p_contact,
+                firstName=request.POST.get('newChildFirstName'),
+                lastName=request.POST.get('newChildLastName'),
+                birthday=request.POST.get('newChildBirthday')
+            )
 
     args = {#'form_p': form_p,
             #'form_c': form_c,
             'parent': p_contact,
-            'kids': p_kids}
+            'kids': ChildContact.objects.filter(parent=p_contact)}
     return render(request, 'contacts/personal_update1.html', args)
 
 
