@@ -12,7 +12,7 @@
       <!-- Side bar ends  -->
       <div class="col-md-10">
         <div class="row">
-          <div class="card">
+          <div class="card" style="min-width: 1045px;">
             <div class="card-header main-color-bg">
               <div class="row">
                 <div class="col-md-10">
@@ -36,23 +36,29 @@
                 <div class="form-group col-md-3">
                   <strong><label for="inputBusnessType">Contact type</label></strong>
                   <div class="input-group mb-3">
-                      <!--{ render_field form_p.contactType class="form-control" }-->
+                      <select name="contactType" class="form-control" id="id_contactType">
+                        {% for contact_type in dicts.CONTACT_TYPES %}
+                        <option value="{{contact_type.0}}" {% if contact_type.0 == parent.contactType %}selected{% endif %}>{{contact_type.1}}</option>
+                        {% endfor %}
+                      </select>
+
+
                   </div>
                 </div>
 
                 <div class="form-group col-md-3">
                   <strong><label for="inputFirstName">First name</label></strong>
-                  <!--{ render_field form_p.firstName class="form-control"}-->
+                  <input type="text" name="firstName" value="{{ parent.firstName }}" maxlength="100" class="form-control" required="">
                 </div>
 
                 <div class="form-group col-md-3">
                   <strong><label for="inputLastName">Last Name</label></strong>
-                  <!--{ render_field form_p.lastName class="form-control" -->
+                  <input type="text" name="lastName" value="{{ parent.lastName }}" maxlength="100" class="form-control" required="">
                 </div>
 
                 <div class="form-group col-md-3">
                   <strong><label for="inputBirthday">Birthday (yyyy-mm-dd)</label></strong>
-                  {% render_field form_p.birthday class="form-control date-picker" placeholder="yyyy-mm-dd" %}
+                  <input type="text" name="birthday" placeholder="yyyy-mm-dd" class="form-control date-picker" value="{{parent.birthday|date:"Y-m-d"}}">
                 </div>
               </div>
               <!--End of row #1 of the form-->

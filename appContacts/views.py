@@ -3,6 +3,7 @@ from pprint import pprint
 from django.shortcuts import render, redirect
 from django.contrib import messages
 # This to bring dictionaries from chices.py file
+from appContacts.choices import CONTACTTYPE
 from appContacts.models import PersonalContact, ChildContact, BusinessContact, BusinesType
 from accounts.models import Profile
 from appContacts.forms import BusinessContactForm, PersonalContactForm, ChildForm
@@ -105,8 +106,6 @@ def update_p_contact(request, pk_p_contact_id):
     p_contact = PersonalContact.objects.get(id=pk_p_contact_id)
 
     if request.method == 'POST':
-        print("we are in POST, request.POST is:")
-        pprint(dict(request.POST))
         for key, value in request.POST.items():
             if key.startswith('child|'):
                 # Это данные ребёнка, формат — child|child_id|child_field
@@ -115,13 +114,14 @@ def update_p_contact(request, pk_p_contact_id):
                 child_field = fields[2]
 
                 child = ChildContact.objects.get(pk=child_id)
-                if child_field == 'birthday':
-                    print('birthday is', value)
                 setattr(child, child_field, value)
                 child.save()
-            else:
+            elif not key.startswith('newChild'):
                 # Save parent's data
-                pass
+                if key == 'birthday' and not value:
+                    p_contact.birthday = None
+                else:
+                    setattr(p_contact, key, value)
         if request.POST.get('newChildFirstName') and request.POST.get('newChildLastName'):
             # Save new Child
             ChildContact.objects.create(
@@ -130,11 +130,13 @@ def update_p_contact(request, pk_p_contact_id):
                 lastName=request.POST.get('newChildLastName'),
                 birthday=request.POST.get('newChildBirthday')
             )
+    p_contact.save()
 
-    args = {#'form_p': form_p,
-            #'form_c': form_c,
-            'parent': p_contact,
-            'kids': ChildContact.objects.filter(parent=p_contact)}
+    args = {
+        'parent': PersonalContact.objects.get(id=pk_p_contact_id),
+        'kids': ChildContact.objects.filter(parent=p_contact),
+        'dicts': {'CONTACT_TYPES': CONTACTTYPE}
+    }
     return render(request, 'contacts/personal_update1.html', args)
 
 
