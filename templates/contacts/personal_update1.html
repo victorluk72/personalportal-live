@@ -296,7 +296,7 @@
                           class="form-control"></td>
                       <td><input type="text" name="child|{{ kid.pk }}|lastName" value="{{kid.lastName}}" maxlength="100"
                           class="form-control"></td>
-                      <td><input type="text" name="child|{{ kid.pk }}|birthday" value="{{kid.birthday}}" placeholder="yyyy-mm-dd"
+                      <td><input type="text" name="child|{{ kid.pk }}|birthday" value="{{kid.birthday|date:"Y-m-d"}}" placeholder="yyyy-mm-dd"
                           class="form-control date-picker"></td>
                     </tr>
                     {% endfor %}

@@ -117,8 +117,9 @@ def update_p_contact(request, pk_p_contact_id):
                 child_field = fields[2]
 
                 child = ChildContact.objects.get(pk=child_id)
-                if child_field != 'birthday':
-                    setattr(child, child_field, value)
+                if child_field == 'birthday':
+                    print('birthday is', value)
+                setattr(child, child_field, value)
                 child.save()
             else:
                 # Это данные родителя
