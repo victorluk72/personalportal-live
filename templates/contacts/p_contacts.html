@@ -5,6 +5,21 @@
 
 {% block content %}
 
+
+<button type="button" id="show_delete_personal_contact_form" style="display: none;" class="btn btn-primary" data-toggle="modal" data-target="#deletePersonalContactModel">
+  Launch demo modal
+</button>
+
+<script>
+function deletePersonalContact(contact_id, contact_name){
+    document.getElementById('deleted_contact_name').innerHTML = contact_name;
+    document.getElementById('deleted_contact_id').innerHTML = contact_id;
+    document.getElementById('show_delete_personal_contact_form').click();
+}
+</script>
+
+
+
 <!-- Main area begins -->
 <section id="main">
   <div class="container-fluid">
@@ -77,7 +92,7 @@
                     <div class="btn-group">
                       <a class="btn btm-sm btn-success" href="{% url 'update_p_contact' personal_contact.id %}"><i
                           class="fa fa-edit fa-xs"></i></a>
-                      <a class="btn btm-sm btn-danger" href="{% url 'delete_p_contact' personal_contact.id %}"><i class="fa fa-trash fa-xs"></i></a>
+                      <a class="btn btm-sm btn-danger" href="javascript:;" onclick="deletePersonalContact('{{personal_contact.pk}}', '{{personal_contact.lastName}}')"><i class="fa fa-trash fa-xs"></i></a>
                     </div>
                   </td>
                 </tr>
@@ -107,6 +122,7 @@
 <!-- Modal Personal/Business contact begins -->
 {% include 'contacts/_modal_personal.html'%}
 {% include 'contacts/_modal_business.html'%}
+{% include 'contacts/_modal_p_delete.html'%}
 <!-- Modal Personal/Business contact ends -->
 
 {% endblock %}
